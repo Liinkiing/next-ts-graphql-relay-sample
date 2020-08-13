@@ -128,7 +128,7 @@ export default Index
 ```
 
 A very small exemple application using this starter with Relay and proper TypeScript
-typings can be found here: https://github.com/Liinkiing/ts-test-relay-next, because it
+typings can be found here: https://github.com/Liinkiing/next-ts-graphql-relay-sample, because it
 may be hard to guess what types to use, for example when using fragments, or that `QueryRenderer` is a React
 component that accept a generic type, so you can write this in your JSX to have proper
 typings `<QueryRenderer<pages_indexQuery>>...</QueryRenderer>`
@@ -158,7 +158,7 @@ It's again a personal convention that I follow, feel free to annihilate this dir
 
 ## Styled system
 
-It also comes with [styled-components](https://github.com/styled-system/styled-system). It is a great way to
+It also comes with [styled-system](https://github.com/styled-system/styled-system). It is a great way to
 build reusable UI blocks with a great props API and consistent spaces / typography.
 A lot comes from the theme, provided in `~/styles/themes/base.ts` where we define some
 breakpoints, spacings and typography stuff. It allows then the custom `AppBox` component (`~/ui/AppBox`)
