@@ -1,0 +1,33 @@
+{
+  "env": {
+    "production": {
+      "plugins": [
+        [
+          "styled-components",
+          {
+            "ssr": true,
+            "displayName": false,
+            "preprocess": false
+          }
+        ]
+      ]
+    }
+  },
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "relay",
+      {
+        "artifactDirectory": "./src/__generated__"
+      }
+    ],
+    [
+      "styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
+    ]
+  ]
+}
