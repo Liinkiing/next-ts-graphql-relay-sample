@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "API Endpoint": {
-        "url": "https://yourapi/graphql",
+        "url": "https://swapi-graphql.netlify.app/.netlify/functions/index",
         "introspect": true
       }
     }

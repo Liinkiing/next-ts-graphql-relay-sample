@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import {
   border,
   BorderProps,
@@ -17,6 +17,8 @@ import {
   position,
   PositionProps,
   ResponsiveValue,
+  shadow,
+  ShadowProps,
   space,
   SpaceProps,
   typography,
@@ -124,6 +126,7 @@ interface AppLetterSpacing {
 type AppTypographyProps = Omit<TypographyProps, 'fontWeight' | 'lineHeight' | 'fontSize' | 'letterSpacing'>
 
 type StyledSystemProps = ColorProps &
+  ShadowProps &
   SpaceProps &
   LayoutProps &
   FlexboxProps &
@@ -136,7 +139,10 @@ type ModifiedStyledSystemProps = AppFontSize & AppLetterSpacing & AppFontWeight 
 
 interface CustomBoxProps {
   readonly uppercase?: boolean
-  readonly css?: any
+  readonly css?:
+    | ((props: { theme: DefaultTheme } & Record<any, any>) => Record<string, unknown>)
+    | ReturnType<typeof css>
+    | Record<string, unknown>
   readonly ref?: any
 }
 
@@ -162,6 +168,7 @@ const AppBox = styled('div').withConfig({
   props => ({
     textTransform: props.uppercase ? 'uppercase' : undefined,
   }),
+  shadow,
   color,
   space,
   layout,

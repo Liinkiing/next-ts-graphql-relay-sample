@@ -6,7 +6,7 @@ const theme: DefaultTheme = {
   ...baseTheme,
   colors: {
     ...baseTheme.colors,
-    background: colors.white,
+    background: colors.gray[100],
     text: colors.dark,
     link: colors.blue[600],
     primary: colors.orange[600],
