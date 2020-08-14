@@ -16,6 +16,8 @@ export default createGlobalStyle`
 
   body {
     ${MAIN_BACKGROUND};
+    height: 100vh;
+    width: 100vw;
     color: ${props => theme(props).colors.text};
   }
 
