@@ -9,7 +9,8 @@ const posters: Record<string, { url: string }> = {
     url: 'https://www.dafont.com/forum/attach/orig/5/8/580533.jpg',
   },
   'ZmlsbXM6NA==': {
-    url: 'https://mvpo.us/img/P4974.jpg',
+    url:
+      'https://cdn.shopify.com/s/files/1/0037/8008/3782/products/phantom_menace_styleB_SD14854_B2_framed2.jpg?v=1548344172',
   },
   'ZmlsbXM6NQ==': {
     url: 'https://i.pinimg.com/736x/8d/d5/56/8dd556f0e49d1fb9eb80184b48e6cf2b.jpg',
