@@ -26,6 +26,7 @@ const Poster = styled.img`
 
 export const MovieDetail: FC<Props> = ({ movie: movieFragment }) => {
   const movie = useFragment(FRAGMENT, movieFragment)
+
   return (
     <AppBox display="flex">
       <Poster src={movie.posterUrl} alt="" />

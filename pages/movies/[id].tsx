@@ -2,14 +2,13 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import AppHead from '~/components/AppHead'
 import Page from '~/ui/layout/Page'
 import AppContainer from '~/ui/layout/AppContainer'
-import { fetchQuery, graphql, useRelayEnvironment } from 'react-relay/hooks'
-import { QueryRenderer } from 'react-relay'
+import { fetchQuery, graphql } from 'react-relay/hooks'
 import { useRouter } from 'next/router'
-import { IdQuery } from '~/__generated__/IdQuery.graphql'
-import { WithRelayRecords } from '~/@types'
+import { IdQuery, IdQueryResponse } from '~/__generated__/IdQuery.graphql'
 import { initEnvironment } from '~/relay'
 import Text from '~/ui/typography/Text'
 import MovieDetail from '~/components/app/movie/MovieDetail'
+import { RelayProps } from '~/@types'
 
 const QUERY = graphql`
   query IdQuery($id: ID!) {
@@ -20,12 +19,10 @@ const QUERY = graphql`
   }
 `
 
-const MovieDetailPage: NextPage = () => {
-  const environment = useRelayEnvironment()
-  const {
-    isFallback,
-    query: { id },
-  } = useRouter()
+type Props = RelayProps<IdQueryResponse>
+
+const MovieDetailPage: NextPage<Props> = ({ film }) => {
+  const { isFallback } = useRouter()
 
   return (
     <Page>
@@ -33,25 +30,10 @@ const MovieDetailPage: NextPage = () => {
       <AppContainer full>
         {isFallback && <Text>Loading...</Text>}
         {!isFallback && (
-          <QueryRenderer<IdQuery>
-            variables={{
-              id: id as string,
-            }}
-            fetchPolicy="store-and-network"
-            environment={environment}
-            query={QUERY}
-            render={({ error, props }) => {
-              if (error) return <Text>{error.message}</Text>
-              else if (props && props.film)
-                return (
-                  <>
-                    <AppHead title={props.film.title} />
-                    <MovieDetail movie={props.film} />
-                  </>
-                )
-              return <Text>Loading...</Text>
-            }}
-          />
+          <>
+            <AppHead title={film.title} />
+            <MovieDetail movie={film} />
+          </>
         )}
       </AppContainer>
     </Page>
@@ -67,10 +49,10 @@ export const getStaticPaths: GetStaticPaths<RouteParams> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<WithRelayRecords, RouteParams> = async ctx => {
+export const getStaticProps: GetStaticProps<Props, RouteParams> = async ctx => {
   const { environment } = initEnvironment()
 
-  await fetchQuery<IdQuery>(environment, QUERY, {
+  const relayProps = await fetchQuery<IdQuery>(environment, QUERY, {
     id: ctx.params.id,
   }).toPromise()
 
@@ -80,6 +62,7 @@ export const getStaticProps: GetStaticProps<WithRelayRecords, RouteParams> = asy
     revalidate: 1,
     props: {
       relayRecords,
+      ...relayProps,
     },
   }
 }
