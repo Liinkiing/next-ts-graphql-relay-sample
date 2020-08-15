@@ -39,6 +39,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const relayRecords = environment.getStore().getSource().toJSON()
 
   return {
+    revalidate: 1,
     props: {
       relayRecords,
       ...relayProps,
