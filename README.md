@@ -8,6 +8,11 @@ Also testing relay store as a client store, with some internal directives in
 relay like `@__clientField`, very useful to have client-side fields (similar to
 [Type Policies](https://www.apollographql.com/docs/react/caching/cache-field-behavior/) in Apollo)
 
+## Starter
+
+This project uses my starter https://github.com/Liinkiing/next-ts-graphql-relay-starter, feel
+free to use it!
+
 ## Useful links
 
 - https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration
