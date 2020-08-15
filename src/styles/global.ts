@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import bootstrap from '~/styles/bootstrap'
-import { MAIN_BACKGROUND } from '~/styles/modules/variables'
+import { BREAKPOINTS, MAIN_BACKGROUND } from '~/styles/modules/variables'
 import { theme } from '~/styles/themes'
 
 export default createGlobalStyle`
@@ -36,5 +36,22 @@ export default createGlobalStyle`
 
   p {
     font-family: ${props => theme(props).fonts.body};
+  }
+
+  #__next {
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: ${BREAKPOINTS.tablet}) {
+      height: 100vh;
+      flex-direction: row;
+    }
+    & .router__wrapper {
+      padding-bottom: 80px;
+      @media screen and (min-width: ${BREAKPOINTS.tablet}) {
+        overflow-y: scroll;
+        padding-bottom: 0;
+      }
+      flex: 1;
+    }
   }
 `

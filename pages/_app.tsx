@@ -9,7 +9,7 @@ import { dark } from '~/styles/themes'
 import { createEnvironment } from '~/relay'
 import { RelayEnvironmentProvider } from 'react-relay/hooks'
 
-const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const environment = useMemo(() => createEnvironment(pageProps.relayRecords), [pageProps.relayRecords])
   return (
     <React.StrictMode>
@@ -18,9 +18,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
           <GlobalStyle />
           <NProgress color={dark.colors.primary} spinner={false} />
           <AppNav />
-          <AnimatePresence exitBeforeEnter initial={false}>
-            <Component {...pageProps} key={router.route} />
-          </AnimatePresence>
+          <Component {...pageProps} />
         </ThemeProvider>
       </RelayEnvironmentProvider>
     </React.StrictMode>

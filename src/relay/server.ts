@@ -2,6 +2,7 @@ import { RelayNetworkLayer } from 'react-relay-network-modern/node8'
 import { Environment, RecordSource, Store } from 'relay-runtime'
 import { RecordMap } from 'relay-runtime/lib/store/RelayStoreTypes'
 import { urlMiddleware } from '~/relay/middlewares'
+import handlerProvider from '~/relay/providers'
 
 const initEnvironment = () => {
   const source = new RecordSource()
@@ -9,6 +10,7 @@ const initEnvironment = () => {
 
   return {
     environment: new Environment({
+      handlerProvider,
       store,
       network: new RelayNetworkLayer([urlMiddleware]),
     }),

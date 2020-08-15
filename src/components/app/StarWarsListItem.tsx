@@ -1,15 +1,16 @@
 import React, { FC } from 'react'
 import { graphql, useFragment } from 'react-relay/hooks'
-import { StarWarsListItem_film$key } from '~/__generated__/StarWarsListItem_film.graphql'
+import type { StarWarsListItem_film$key } from '~/__generated__/StarWarsListItem_film.graphql'
 import Heading, { HeadingSize } from '~/ui/typography/Heading'
 import Text from '~/ui/typography/Text'
 import FluentBox from '~/ui/FluentBox'
 import styled from 'styled-components'
+import AppLink from '~/ui/typography/AppLink'
 
 const FRAGMENT = graphql`
   fragment StarWarsListItem_film on Film {
+    id
     title
-    created
     director
   }
 `
@@ -31,10 +32,12 @@ export const StarWarsListItem: FC<Props> = ({ film: filmFragment }) => {
 
   return (
     <li>
-      <StarWarsListItemInner p={3} borderRadius={4} bg="gray.700">
-        <Heading size={HeadingSize.Md}>{film.title}</Heading>
-        <Text>{film.director}</Text>
-      </StarWarsListItemInner>
+      <AppLink href="/movies/[id]" as={`/movies/${film.id}`} key={film.id} color="inherit">
+        <StarWarsListItemInner p={3} borderRadius={4} bg="gray.700">
+          <Heading size={HeadingSize.Md}>{film.title}</Heading>
+          <Text>{film.director}</Text>
+        </StarWarsListItemInner>
+      </AppLink>
     </li>
   )
 }

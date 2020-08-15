@@ -3,7 +3,6 @@ import { NextPage } from 'next'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { DefaultRouterPageVariants } from '~/common/framer'
-import { BREAKPOINTS } from '~/styles/modules/variables'
 
 interface Props {
   readonly as?: string
@@ -15,13 +14,8 @@ const PageInner = styled(motion.div)`
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: center;
   transform-origin: left center;
-  max-width: 90vw;
   margin: 0 auto;
-  @media screen and (min-width: ${BREAKPOINTS.tablet}) {
-    min-width: 70vw;
-  }
 `
 
 const Page: NextPage<Props> = ({ children, as = 'div', noDefaultTransition = false, ...rest }) =>

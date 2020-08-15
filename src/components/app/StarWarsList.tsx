@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
 import { graphql, useFragment } from 'react-relay/hooks'
-import { StarWarsList_films$key } from '~/__generated__/StarWarsList_films.graphql'
-import { StarWarsListItem } from '~/components/StarWarsListItem'
+import type { StarWarsList_films$key } from '~/__generated__/StarWarsList_films.graphql'
+import { StarWarsListItem } from '~/components/app/StarWarsListItem'
 import AppBox from '~/ui/AppBox'
+import AppLink from '~/ui/typography/AppLink'
 
 const FRAGMENT = graphql`
   fragment StarWarsList_films on FilmsConnection {
